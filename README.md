@@ -52,7 +52,7 @@ PDF is a tricky format, so marker will not always work perfectly.  Here are some
 
 # Installation
 
-This has been tested on Mac and Linux (Ubuntu and Debian).  You'll need python 3.9+ and [poetry](https://python-poetry.org/docs/#installing-with-the-official-installer).
+This has been tested on Mac, Linux and Windows WSL with Docker (Ubuntu and Debian).  You'll need python 3.9+ and [poetry](https://python-poetry.org/docs/#installing-with-the-official-installer).
 
 First, clone the repo:
 
@@ -84,6 +84,22 @@ First, clone the repo:
 - Install python requirements
   - `poetry install`
   - `poetry shell` to activate your poetry venv
+
+## Windows WSL with Docker (in Dev-Mode)
+
+- Call `docker compose --env-file dev.env up`
+  - GPU usage or not is configued in `docker-compose.yml`
+- Install [VS Code](https://code.visualstudio.com/)
+  - Install following Extensions
+    - Dev Containers
+- Attach VS Code to Docker Container
+  - Attach to running containers... (Lower left edge in VS Code)
+    - select marker-marker-1
+  - Explorer Open folder -> /opt/marker
+  - Restart VS Code on request (Plugins installed automatically)
+- Open Terminal in VS Code
+  - Use it like described below (Convert...)
+  - Windows-Folders are mountet into Container, just copy Documents
 
 # Usage
 

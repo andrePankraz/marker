@@ -1,0 +1,30 @@
+# See environment variables in file ".env"
+version: '3.8'
+services:
+  marker:
+    build:
+      dockerfile: Dockerfile
+      target: ${TARGET:-local} # dev or local
+    shm_size: '2gb'
+    environment:
+      - LOG_FILENAME=data/logs/logfile.log
+      - MODELS_FOLDER=data/models/
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    volumes:
+      - .:/opt/marker
+    networks:
+      - app-tier
+    ports:
+      - 8200:8200
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [ gpu ]
+networks:
+  default:
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
+  app-tier:
